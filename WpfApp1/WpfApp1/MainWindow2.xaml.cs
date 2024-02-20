@@ -40,7 +40,7 @@ namespace WpfApp1
 
             InitColumns(InitCulumnCount);
 
-            grid.Visibility = Visibility.Visible;
+            VisibleGrid();
 
             Dispatcher.InvokeAsync(new Action(() =>
             {
@@ -48,6 +48,19 @@ namespace WpfApp1
             }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
 
             App.Current.MainWindow = this;
+        }
+
+        private void VisibleGrid()
+        {
+            grid.Margin = new Thickness(0, 0, 1500, 900);
+
+            grid.Visibility = Visibility.Visible;
+
+
+            Dispatcher.InvokeAsync(new Action(() =>
+            {
+                grid.Margin = new Thickness(5);
+            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
         }
 
         private void InitColumns(int count)

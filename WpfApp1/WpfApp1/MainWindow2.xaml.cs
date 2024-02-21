@@ -38,6 +38,8 @@ namespace WpfApp1
 
             InitColumns(InitCulumnCount);
 
+            grid.Visibility = Visibility.Visible;
+
             App.Current.MainWindow = this;
         }
 

@@ -36,31 +36,11 @@ namespace WpfApp1
         {
             base.OnContentRendered(e);
 
-            Cursor = Cursors.Wait;
-
             InitColumns(InitCulumnCount);
-
-            VisibleGrid();
-
-            Dispatcher.InvokeAsync(new Action(() =>
-            {
-                Cursor = null;
-            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
-
-            App.Current.MainWindow = this;
-        }
-
-        private void VisibleGrid()
-        {
-            grid.Margin = new Thickness(0, 0, 1500, 900);
 
             grid.Visibility = Visibility.Visible;
 
-
-            Dispatcher.InvokeAsync(new Action(() =>
-            {
-                grid.Margin = new Thickness(5);
-            }), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            App.Current.MainWindow = this;
         }
 
         private void InitColumns(int count)
@@ -180,6 +160,15 @@ namespace WpfApp1
             {
                 Items[index.RowIndex].SetOn(index.ColumnIndex);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var next = new MainWindow2();
+            next.Show();
+            App.Current.MainWindow = next;
+
+            this.Close();
         }
     }
 }
